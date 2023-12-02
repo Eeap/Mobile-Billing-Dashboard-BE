@@ -17,7 +17,7 @@
    build:
      env:
        AWS_REGION: us-east-1
-       ECS_CLUSTER: billingCluster
+       ECS_CLUSTER: aws_billing_cluster
        ECS_SERVICE: billing_service
        ECS_TASK_DEFINITION: billing_task.json
        CONTAINER_NAME: billing-container
@@ -68,5 +68,5 @@
          with:
            task-definition: ${{ steps.task-def.outputs.task-definition }}
            service: ${{ env.ECS_SERVICE }} # billing_service
-           cluster: ${{ env.ECS_CLUSTER }} # billingCluster
+           cluster: ${{ env.ECS_CLUSTER }} # aws_billing_cluster
            wait-for-service-stability: true
