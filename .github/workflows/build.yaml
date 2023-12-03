@@ -18,7 +18,7 @@
      env:
        AWS_REGION: us-east-1
        ECS_CLUSTER: aws_billing_cluster
-       ECS_SERVICE: billing_service
+       ECS_SERVICE: billing_dashboard_service
        ECS_TASK_DEFINITION: billing_task.json
        CONTAINER_NAME: billing-container
      # The type of runner that the job will run on
