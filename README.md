@@ -8,17 +8,17 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/Eeap/Mobile-Billing-Dashboard">
+  <a href="https://github.com/Eeap/Mobile-Billing-Dashboard-BE">
     <h3 align="center">Mobile Billing Dashboard with AWS</h3>
   </a>
 
 
   <p align="center">
-    <a href="https://github.com/Eeap/Mobile-Billing-Dashboard/blob/main/README.md">한국어</a>
+    <a href="https://github.com/Eeap/Mobile-Billing-Dashboard-BE/blob/main/README.md">한국어</a>
     <br />
-    <a href="https://github.com/Eeap/Mobile-Billing-Dashboard/issues">Report Issues</a>
+    <a href="https://github.com/Eeap/Mobile-Billing-Dashboard-BE/issues">Report Issues</a>
     ·
-    <a href="https://github.com/Eeap/Mobile-Billing-Dashboard/pulls">Pull Requests</a>
+    <a href="https://github.com/Eeap/Mobile-Billing-Dashboard-BE/pulls">Pull Requests</a>
   </p>
 </div>
 
@@ -123,8 +123,8 @@ curl -i -H 'Accept: application/json' http://localhost:8000/api/v1/aws-resource?
           "key":       "Amazon Simple Storage Service",
           "amount":    "2.8",
           "timeEnd":   "2023-11-01",
-          "timeStart": "2023-11-02",
-      },
+          "timeStart": "2023-11-02"
+      }
     ],
     "totalResults": 1
   }
@@ -147,8 +147,8 @@ curl -i -H 'Accept: application/json' http://localhost:8000/api/v1/alert-message
     "messages": [
         {
             "time":    "2023-11-08 20:55:00",
-            "message": "리소스 총 사용 요금이 70% 초과하였습니다.",
-        },
+            "message": "리소스 총 사용 요금이 70% 초과하였습니다."
+        }
     ],
     "totalResults": 1
   }
@@ -302,7 +302,7 @@ Please refer to `LICENSE.txt` for LICENSE.
     <tr>
       <td align="center"><a href="https://github.com/Eeap"><img src="https://avatars.githubusercontent.com/u/42088290?v=4" width="100px;" alt=""/><br /><sub><b>Sumin Kim</b></sub></a></td>
     </tr>
-  </tobdy>
+  </tbody>
 </table>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -310,18 +310,18 @@ Please refer to `LICENSE.txt` for LICENSE.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/Eeap/Mobile-Billing-Dashboard.svg?style=flat
-[contributors-url]: https://github.com/Eeap/Mobile-Billing-Dashboard/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/Eeap/Mobile-Billing-Dashboard.svg?style=flat
-[forks-url]: https://github.com/Eeap/Mobile-Billing-Dashboard/network/members
-[stars-shield]: https://img.shields.io/github/stars/Eeap/Mobile-Billing-Dashboard.svg?style=flat
-[stars-url]: https://github.com/Eeap/Mobile-Billing-Dashboard/stargazers
-[issues-shield]: https://img.shields.io/github/issues/Eeap/Mobile-Billing-Dashboard.svg?style=flat
-[issues-url]: https://github.com/Eeap/Mobile-Billing-Dashboard/issues
-[pr-url]: https://github.com/Eeap/Mobile-Billing-Dashboard/pulls
-[pr-shield]: https://img.shields.io/github/issues-pr/Eeap/Mobile-Billing-Dashboard.svg?style=flat
-[license-shield]: https://img.shields.io/github/license/Eeap/Mobile-Billing-Dashboard.svg?style=flat
-[license-url]: https://github.com/Eeap/Mobile-Billing-Dashboard/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/Eeap/Mobile-Billing-Dashboard-BE.svg?style=flat
+[contributors-url]: https://github.com/Eeap/Mobile-Billing-Dashboard-BE/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/Eeap/Mobile-Billing-Dashboard-BE.svg?style=flat
+[forks-url]: https://github.com/Eeap/Mobile-Billing-Dashboard-BE/network/members
+[stars-shield]: https://img.shields.io/github/stars/Eeap/Mobile-Billing-Dashboard-BE.svg?style=flat
+[stars-url]: https://github.com/Eeap/Mobile-Billing-Dashboard-BE/stargazers
+[issues-shield]: https://img.shields.io/github/issues/Eeap/Mobile-Billing-Dashboard-BE.svg?style=flat
+[issues-url]: https://github.com/Eeap/Mobile-Billing-Dashboard-BE/issues
+[pr-url]: https://github.com/Eeap/Mobile-Billing-Dashboard-BE/pulls
+[pr-shield]: https://img.shields.io/github/issues-pr/Eeap/Mobile-Billing-Dashboard-BE.svg?style=flat
+[license-shield]: https://img.shields.io/github/license/Eeap/Mobile-Billing-Dashboard-BE.svg?style=flat
+[license-url]: https://github.com/Eeap/Mobile-Billing-Dashboard-BE/blob/master/LICENSE.txt
 
 [Go]: https://img.shields.io/badge/Go-00ADD8?style=flat&logo=Go&logoColor=white
 [Go-url]: https://go.dev/
