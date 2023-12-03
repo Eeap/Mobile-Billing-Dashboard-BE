@@ -1,5 +1,4 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:us-east-1:564799817675:task-definition/billing_task:1",
     "containerDefinitions": [
         {
             "name": "billing-container",
@@ -29,9 +28,7 @@
     "family": "billing_task",
     "executionRoleArn": "arn:aws:iam::564799817675:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
-    "revision": 1,
     "volumes": [],
-    "status": "ACTIVE",
     "requiresAttributes": [
         {
             "name": "ecs.capability.env-files.s3"
@@ -44,10 +41,6 @@
         }
     ],
     "placementConstraints": [],
-    "compatibilities": [
-        "EC2",
-        "FARGATE"
-    ],
     "requiresCompatibilities": [
         "FARGATE"
     ],
