@@ -3,12 +3,12 @@ package routes
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
+	"github.com/gofiber/fiber/v2"
+	"github.com/stretchr/testify/assert"
 	"net/http/httptest"
 	"os"
 	"testing"
-
-	"github.com/gofiber/fiber/v2"
-	"github.com/stretchr/testify/assert"
 )
 
 func TestPrivateRoutes(t *testing.T) {
@@ -20,8 +20,6 @@ func TestPrivateRoutes(t *testing.T) {
 		description   string
 		route         string // input route
 		method        string // input method
-		accessToken   string // input token
-		refreshToken  string // input token
 		body          map[string]interface{}
 		expectedError bool
 		expectedCode  int
@@ -30,42 +28,47 @@ func TestPrivateRoutes(t *testing.T) {
 			description:   "logout test",
 			route:         "/api/v1/logout",
 			method:        "POST",
-			accessToken:   os.Getenv("TEST_ACCESS_TOKEN"),
-			refreshToken:  os.Getenv("TEST_REFRESH_TOKEN"),
 			body:          map[string]interface{}{},
 			expectedError: false,
 			expectedCode:  204,
 		},
 		{
-			description:   "refresh test",
-			route:         "/api/v1/login/refresh",
-			method:        "POST",
-			accessToken:   os.Getenv("TEST_ACCESS_TOKEN"),
-			refreshToken:  os.Getenv("TEST_REFRESH_TOKEN"),
+			description:   "aws resource test",
+			route:         fmt.Sprintf("/api/v1/aws-resource?region=%s&day=7&email=%s", os.Getenv("AWS_REGION"), os.Getenv("TEST_EMAIL")),
+			method:        "GET",
 			body:          map[string]interface{}{},
 			expectedError: false,
 			expectedCode:  200,
 		},
 		{
-			description:  "user key save test",
-			route:        "/api/v1/user/key",
-			method:       "POST",
-			accessToken:  os.Getenv("TEST_ACCESS_TOKEN"),
-			refreshToken: os.Getenv("TEST_REFRESH_TOKEN"),
+			description:   "alert messages test",
+			route:         fmt.Sprintf("/api/v1/alert-messages?email=%s", os.Getenv("TEST_EMAIL")),
+			method:        "GET",
+			body:          map[string]interface{}{},
+			expectedError: false,
+			expectedCode:  200,
+		},
+		{
+			description: "user key save test",
+			route:       "/api/v1/user-key",
+			method:      "POST",
 			body: map[string]interface{}{
-				"accessKey": "test",
-				"secretKey": "test",
+				"email":     os.Getenv("TEST_EMAIL"),
+				"accessKey": os.Getenv("TEST_AWS_ACCESS_KEY"),
+				"secretKey": os.Getenv("TEST_AWS_SECRET_KEY"),
 			},
 			expectedError: false,
 			expectedCode:  200,
 		},
 		{
-			description:   "user key get test",
-			route:         "/api/v1/user/key/get",
-			method:        "GET",
-			accessToken:   os.Getenv("TEST_ACCESS_TOKEN"),
-			refreshToken:  os.Getenv("TEST_REFRESH_TOKEN"),
-			body:          map[string]interface{}{},
+			description: "alert setting save test",
+			route:       "/api/v1/alert-setting",
+			method:      "POST",
+			body: map[string]interface{}{
+				"email":      os.Getenv("TEST_EMAIL"),
+				"timeEnd":    "2023-01-01 00:00:00",
+				"targetCost": 1,
+			},
 			expectedError: false,
 			expectedCode:  200,
 		},
@@ -82,8 +85,6 @@ func TestPrivateRoutes(t *testing.T) {
 		// Create a new http request with the route from the test case.
 		b, err := json.Marshal(test.body)
 		req := httptest.NewRequest(test.method, test.route, bytes.NewReader(b))
-		req.Header.Set("Authorization", "Bearer "+test.accessToken)
-		req.Header.Set("X-refresh-token", test.refreshToken)
 		req.Header.Set("Content-Type", "application/json")
 
 		// Perform the request plain with the app.

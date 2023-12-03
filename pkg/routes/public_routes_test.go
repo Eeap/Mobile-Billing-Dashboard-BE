@@ -27,7 +27,19 @@ func TestPublicRoutes(t *testing.T) {
 	}{
 		{
 			description: "login test",
-			route:       "/api/v1/login/new",
+			route:       "/api/v1/login",
+			method:      "POST",
+			tokenString: "",
+			body: map[string]interface{}{
+				"email":    os.Getenv("TEST_EMAIL"),
+				"password": os.Getenv("TEST_PASSWORD"),
+			},
+			expectedError: false,
+			expectedCode:  200,
+		},
+		{
+			description: "sign up test",
+			route:       "/api/v1/sign-up",
 			method:      "POST",
 			tokenString: "",
 			body: map[string]interface{}{
