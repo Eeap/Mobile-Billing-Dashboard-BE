@@ -1,4 +1,4 @@
-name: billing dasboard test
+name: billing dashboard test
 
 on:
  pull_request:
@@ -6,7 +6,7 @@ on:
      - dev
 
 jobs:
- build:
+ format:
    runs-on: ubuntu-latest
    strategy:
      matrix:
