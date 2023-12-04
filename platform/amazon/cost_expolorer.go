@@ -3,8 +3,9 @@ package amazon
 import (
 	"context"
 	"log"
-	"main/pkg/configs"
 	"time"
+
+	"main/pkg/configs"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/costexplorer"

@@ -2,14 +2,16 @@ package amazon
 
 import (
 	"context"
+	"log"
+	"os"
+	"strconv"
+
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb"
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb/types"
-	"log"
+
 	"main/app/models"
 	"main/pkg/configs"
-	"os"
-	"strconv"
 )
 
 func PutItem(user *models.SignIn) error {
@@ -23,13 +25,13 @@ func PutItem(user *models.SignIn) error {
 			"targetCost": &types.AttributeValueMemberN{Value: strconv.Itoa(0)}, // 목표비용
 		},
 	})
-
 	if err != nil {
 		log.Println(err)
 		return err
 	}
 	return nil
 }
+
 func GetItem(user *models.SignIn) (map[string]types.AttributeValue, error) {
 	svc := configs.GetDynamoDBClient()
 	resp, err := svc.GetItem(context.TODO(), &dynamodb.GetItemInput{

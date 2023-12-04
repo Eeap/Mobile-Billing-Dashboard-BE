@@ -2,13 +2,15 @@ package amazon
 
 import (
 	"context"
-	"github.com/aws/aws-sdk-go-v2/aws"
-	"github.com/aws/aws-sdk-go-v2/service/s3"
 	"io"
 	"log"
-	"main/pkg/configs"
 	"os"
 	"strings"
+
+	"github.com/aws/aws-sdk-go-v2/aws"
+	"github.com/aws/aws-sdk-go-v2/service/s3"
+
+	"main/pkg/configs"
 )
 
 func S3UploadObject(file *os.File) (string, error) {

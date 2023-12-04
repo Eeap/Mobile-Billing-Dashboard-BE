@@ -2,18 +2,19 @@ package services
 
 import (
 	"fmt"
-	"github.com/aws/aws-sdk-go-v2/service/costexplorer/types"
-	dynamoType "github.com/aws/aws-sdk-go-v2/service/dynamodb/types"
 	"log"
-	"main/app/models"
-	"main/platform/amazon"
 	"math"
 	"strconv"
 	"time"
+
+	"github.com/aws/aws-sdk-go-v2/service/costexplorer/types"
+	dynamoType "github.com/aws/aws-sdk-go-v2/service/dynamodb/types"
+
+	"main/app/models"
+	"main/platform/amazon"
 )
 
 func GetCostUsageByResource(costIn *models.CostExplorer) ([]models.CostResource, error) {
-	// 구조체의 리스트를 반환하는 로직 필요
 	iamKey, err := S3GetKey(costIn.Email)
 	if err != nil {
 		log.Println(err)

@@ -2,6 +2,7 @@ package services
 
 import (
 	"errors"
+
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb/types"
 	"main/app/models"
 	"main/platform/amazon"
@@ -33,5 +34,4 @@ func UpdateItem(alertSettings *models.AlertSetting) (string, error) {
 		return "", err
 	}
 	return "alert setting update Success", nil
-
 }

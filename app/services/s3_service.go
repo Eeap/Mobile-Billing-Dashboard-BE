@@ -3,9 +3,10 @@ package services
 import (
 	"bufio"
 	"encoding/csv"
+	"os"
+
 	"main/app/models"
 	"main/platform/amazon"
-	"os"
 )
 
 func S3UploadKey(keyIn *models.UserKey) (string, error) {

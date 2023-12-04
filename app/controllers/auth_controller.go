@@ -39,7 +39,7 @@ func UserSignIn(c *fiber.Ctx) error {
 // @Router /v1/logout [post]
 func UserSignOut(c *fiber.Ctx) error {
 	// Return status 204 no content.
-	return c.Status(fiber.StatusNoContent).JSON(fiber.Map{
+	return c.Status(fiber.StatusOK).JSON(fiber.Map{
 		"error": false,
 		"msg":   "logout success",
 	})
