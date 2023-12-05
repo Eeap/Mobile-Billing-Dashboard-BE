@@ -2,6 +2,7 @@ package services
 
 import (
 	"errors"
+
 	"main/pkg/utils"
 
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb/types"
@@ -9,7 +10,7 @@ import (
 	"main/platform/amazon"
 )
 
-func PutItem(user *models.SignIn) (string, error) {
+func PutItem(user *models.UserData) (string, error) {
 	user.Password = utils.GeneratePassword(user.Password)
 	err := amazon.PutItem(user)
 	if err != nil {
@@ -18,7 +19,7 @@ func PutItem(user *models.SignIn) (string, error) {
 	return "user create Success", nil
 }
 
-func GetItem(user *models.SignIn) (string, error) {
+func GetItem(user *models.UserData) (string, error) {
 	item, err := amazon.GetItem(user)
 	if err != nil {
 		return "", err

@@ -54,7 +54,7 @@ func makeCostResource(costData []types.ResultByTime) ([]models.CostResource, err
 
 func compareCostWithTarget(costData []models.CostResource, email string) error {
 	// email 토대로 dynamoDB에 데이터를 불러오는 로직 필요
-	item, err := amazon.GetItem(&models.SignIn{Email: email})
+	item, err := amazon.GetItem(&models.UserData{Email: email})
 	if err != nil {
 		log.Println(err)
 		return err

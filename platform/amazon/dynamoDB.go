@@ -14,7 +14,7 @@ import (
 	"main/pkg/configs"
 )
 
-func PutItem(user *models.SignIn) error {
+func PutItem(user *models.UserData) error {
 	svc := configs.GetDynamoDBClient()
 	_, err := svc.PutItem(context.TODO(), &dynamodb.PutItemInput{
 		TableName: aws.String(os.Getenv("AWS_TABLE_NAME")),
@@ -32,7 +32,7 @@ func PutItem(user *models.SignIn) error {
 	return nil
 }
 
-func GetItem(user *models.SignIn) (map[string]types.AttributeValue, error) {
+func GetItem(user *models.UserData) (map[string]types.AttributeValue, error) {
 	svc := configs.GetDynamoDBClient()
 	resp, err := svc.GetItem(context.TODO(), &dynamodb.GetItemInput{
 		TableName: aws.String(os.Getenv("AWS_TABLE_NAME")),
