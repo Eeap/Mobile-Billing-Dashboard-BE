@@ -73,8 +73,8 @@ func compareCostWithTarget(costData []models.CostResource, email string) error {
 	}
 	total := 0.0
 	for _, val := range costData {
-		// 10원 미만 가격은 무시
-		if val.Amount < "0.01" {
+		// 1원 미만 가격은 무시
+		if val.Amount < "0.001" {
 			continue
 		}
 		amount, err := strconv.ParseFloat(val.Amount, 64)
