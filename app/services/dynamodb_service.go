@@ -2,6 +2,7 @@ package services
 
 import (
 	"errors"
+	"main/pkg/utils"
 
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb/types"
 	"main/app/models"
@@ -9,6 +10,7 @@ import (
 )
 
 func PutItem(user *models.SignIn) (string, error) {
+	user.Password = utils.GeneratePassword(user.Password)
 	err := amazon.PutItem(user)
 	if err != nil {
 		return "", err
@@ -22,7 +24,7 @@ func GetItem(user *models.SignIn) (string, error) {
 		return "", err
 	}
 	if item["email"].(*types.AttributeValueMemberS).Value == user.Email &&
-		item["password"].(*types.AttributeValueMemberS).Value == user.Password {
+		utils.ComparePasswords(item["password"].(*types.AttributeValueMemberS).Value, user.Password) {
 		return "user login Success", nil
 	}
 	return "password", errors.New("password is wrong")
