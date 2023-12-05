@@ -36,7 +36,10 @@ func createFile(keyIn *models.UserKey) error {
 		return err
 	}
 	writer := csv.NewWriter(bufio.NewWriter(file))
-	writer.Write([]string{keyIn.AccessKey, keyIn.SecretKey})
+	err = writer.Write([]string{keyIn.AccessKey, keyIn.SecretKey})
+	if err != nil {
+		return err
+	}
 	writer.Flush()
 	defer file.Close()
 	return nil
