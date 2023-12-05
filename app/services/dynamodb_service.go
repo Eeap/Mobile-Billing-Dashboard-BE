@@ -36,5 +36,9 @@ func UpdateItem(alertSettings *models.AlertSetting) (string, error) {
 	if err != nil {
 		return "", err
 	}
+	err = DeleteAlertMessages(alertSettings.Email)
+	if err != nil {
+		return "", err
+	}
 	return "alert setting update Success", nil
 }

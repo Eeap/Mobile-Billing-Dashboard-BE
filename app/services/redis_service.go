@@ -3,6 +3,7 @@ package services
 import (
 	"context"
 	"encoding/json"
+	"log"
 
 	"github.com/redis/go-redis/v9"
 	"main/app/models"
@@ -64,4 +65,19 @@ func GetAlertMessages(email string) (*[]models.AlertMessage, error) {
 		resData = append(resData, data)
 	}
 	return &resData, nil
+}
+
+func DeleteAlertMessages(email string) error {
+	connRedis, err := cache.RedisConnection()
+	if err != nil {
+		log.Println(err)
+		// Return status 500 and Redis connection error.
+		return err
+	}
+	err = connRedis.Del(context.Background(), email).Err()
+	if err != nil {
+		log.Println(err)
+		return err
+	}
+	return nil
 }
