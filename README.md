@@ -71,7 +71,7 @@
 
 ### :card_file_box: Built With
 #### :bulb: Language
-[![Go][Go]][Go-url] [![Dart][Dart]][Dart-url] [![Flutter][Flutter]][Flutter-url]
+[![Go][Go]][Go-url]
 #### :bulb: Infrastructure
 [![aws][aws]][aws-url]
 #### :bulb: Environment (CI/CD, Package tools...)
@@ -91,11 +91,39 @@ Download and install packages and associated dependencies via `go get`
   go get .
   ```
 
-Download and install packages and associated dependencies via `flutter pub get`
-* dart flutter
-  ```sh
-  flutter pub get
-  ```
+Set the `.env` configuraton settings
+```text
+# Stage status to start server:
+#   - "dev", for start server without graceful shutdown
+#   - "prod", for start server with graceful shutdown
+STAGE_STATUS="dev"
+
+# Server settings:
+SERVER_HOST="0.0.0.0"
+SERVER_PORT=8000
+SERVER_READ_TIMEOUT=60
+
+# JWT settings:
+JWT_SECRET_KEY="secret"
+JWT_SECRET_KEY_EXPIRE_MINUTES_COUNT=15
+JWT_REFRESH_KEY="refresh"
+JWT_REFRESH_KEY_EXPIRE_HOURS_COUNT=720
+
+REDIS_HOST="127.0.0.1"
+REDIS_PORT=6379
+
+AWS_ACCESS_KEY=
+AWS_SECRET_KEY=
+AWS_REGION=
+AWS_TABLE_NAME=
+BUCKETNAME=
+
+TEST_EMAIL=
+TEST_PASSWORD=
+TEST_AWS_ACCESS_KEY=
+TEST_AWS_SECRET_KEY=
+
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -336,7 +364,3 @@ Please refer to `LICENSE.txt` for LICENSE.
 [aws-url]: https://aws.amazon.com/
 [Github-actions]: https://img.shields.io/badge/GitHub_Actions-2088FF?style=flat&logo=github-actions&logoColor=white
 [Github-actions-url]: https://github.com/features/actions
-[Dart]: https://img.shields.io/badge/Dart-0175C2?style=flat&logo=Dart&logoColor=white
-[Dart-url]: https://dart.dev/
-[Flutter]: https://img.shields.io/badge/Flutter-02569B?style=flat&logo=Flutter&logoColor=white
-[Flutter-url]: https://flutter.dev/
