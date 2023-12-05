@@ -15,6 +15,9 @@ func S3UploadKey(keyIn *models.UserKey) (string, error) {
 		return "", err
 	}
 	file, err := os.Open(keyIn.Email + ".csv")
+	if err != nil {
+		return "", err
+	}
 	msg, err := amazon.S3UploadObject(file)
 	if err != nil {
 		return "", err

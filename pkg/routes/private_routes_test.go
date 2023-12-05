@@ -85,6 +85,9 @@ func TestPrivateRoutes(t *testing.T) {
 	for _, test := range tests {
 		// Create a new http request with the route from the test case.
 		b, err := json.Marshal(test.body)
+		if err != nil {
+			t.Fatal(err)
+		}
 		req := httptest.NewRequest(test.method, test.route, bytes.NewReader(b))
 		req.Header.Set("Content-Type", "application/json")
 

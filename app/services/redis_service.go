@@ -51,6 +51,9 @@ func GetAlertMessages(email string) (*[]models.AlertMessage, error) {
 		return nil, err
 	}
 	res, err := connRedis.LRange(context.Background(), email, 0, -1).Result()
+	if err != nil {
+		return nil, err
+	}
 	resData := []models.AlertMessage{}
 	for _, v := range res {
 		var data models.AlertMessage
