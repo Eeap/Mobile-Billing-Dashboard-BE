@@ -9,7 +9,7 @@ import (
 // UserSignIn method to auth user and return access and refresh tokens.
 // @Router /v1/login [post]
 func UserSignIn(c *fiber.Ctx) error {
-	signIn := &models.SignIn{}
+	signIn := &models.UserData{}
 	if err := c.BodyParser(signIn); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"error":   true,
@@ -38,6 +38,13 @@ func UserSignIn(c *fiber.Ctx) error {
 // UserSignOut method to de-authorize user and delete refresh token from Redis.
 // @Router /v1/logout [post]
 func UserSignOut(c *fiber.Ctx) error {
+	signOut := &models.UserData{}
+	if err := c.BodyParser(signOut); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error":   true,
+			"message": err,
+		})
+	}
 	// Return status 200 no content.
 	return c.Status(fiber.StatusOK).JSON(fiber.Map{
 		"error": false,
@@ -69,14 +76,14 @@ func UserKeySet(c *fiber.Ctx) error {
 
 // @Router /v1/sign-up [post]
 func UserSignUp(c *fiber.Ctx) error {
-	signIn := &models.SignIn{}
-	if err := c.BodyParser(signIn); err != nil {
+	signUn := &models.UserData{}
+	if err := c.BodyParser(signUn); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"error":   true,
 			"message": err,
 		})
 	}
-	msg, err := services.PutItem(signIn)
+	msg, err := services.PutItem(signUn)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"error":   true,
