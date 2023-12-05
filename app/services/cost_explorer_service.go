@@ -91,6 +91,24 @@ func compareCostWithTarget(costData []models.CostResource, email string) error {
 	} else {
 		text = fmt.Sprintf("리소스 총 사용 요금이 %.0f%s를 초과하였습니다.", math.Round(percent), "%")
 	}
+	err = compareMessage(text, email)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func compareMessage(text string, email string) error {
+	messages, err := GetAlertMessages(email)
+	if err != nil {
+		return err
+	}
+	for _, val := range *messages {
+		if val.Message == text {
+			return nil
+		}
+	}
+
 	err = SetAlertMessage(&models.AlertMessage{
 		Time:    time.Now().Format("2006-01-02 15:04:05"),
 		Message: text,
