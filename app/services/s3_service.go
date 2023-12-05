@@ -15,6 +15,9 @@ func S3UploadKey(keyIn *models.UserKey) (string, error) {
 		return "", err
 	}
 	file, err := os.Open(keyIn.Email + ".csv")
+	if err != nil {
+		return "", err
+	}
 	msg, err := amazon.S3UploadObject(file)
 	if err != nil {
 		return "", err
@@ -36,7 +39,10 @@ func createFile(keyIn *models.UserKey) error {
 		return err
 	}
 	writer := csv.NewWriter(bufio.NewWriter(file))
-	writer.Write([]string{keyIn.AccessKey, keyIn.SecretKey})
+	err = writer.Write([]string{keyIn.AccessKey, keyIn.SecretKey})
+	if err != nil {
+		return err
+	}
 	writer.Flush()
 	defer file.Close()
 	return nil

@@ -38,7 +38,7 @@ func UserSignIn(c *fiber.Ctx) error {
 // UserSignOut method to de-authorize user and delete refresh token from Redis.
 // @Router /v1/logout [post]
 func UserSignOut(c *fiber.Ctx) error {
-	// Return status 204 no content.
+	// Return status 200 no content.
 	return c.Status(fiber.StatusOK).JSON(fiber.Map{
 		"error": false,
 		"msg":   "logout success",

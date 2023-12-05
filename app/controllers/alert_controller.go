@@ -9,16 +9,6 @@ import (
 // @Router /v1/alert-messages [get]
 func GetAlertMessages(c *fiber.Ctx) error {
 	email := c.Query("email")
-	//resData := []models.AlertMessage{
-	//	{
-	//		Time:    "2023-11-08 20:55:00",
-	//		Message: "리소스 총 사용 요금이 70% 초과하였습니다.",
-	//	},
-	//	{
-	//		Time:    "2023-11-08 19:54:00",
-	//		Message: "리소스 총 사용 요금이 50% 초과하였습니다.",
-	//	},
-	//}
 	resData, err := services.GetAlertMessages(email)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
